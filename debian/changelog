@@ -1,3 +1,9 @@
+srtp (1.5.4-1~wazo1) wazo-dev-stretch; urgency=medium
+
+  * Upgrade to 1.5.4
+
+ -- Wazo Maintainers <dev+pkg@wazo.community>  Fri, 09 Nov 2018 15:24:03 -0500
+
 srtp (1.4.5~20130609~dfsg-2) unstable; urgency=medium
 
   * Use default hardening options (stop avoid PIE).
