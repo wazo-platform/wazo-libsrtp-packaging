@@ -1,3 +1,9 @@
+srtp (1.5.4-1~wazo2) wazo-dev-stretch; urgency=medium
+
+  * Update compatibility version
+
+ -- Wazo Maintainers <dev+pkg@wazo.community>  Sun, 11 Nov 2018 10:29:03 -0500
+
 srtp (1.5.4-1~wazo1) wazo-dev-stretch; urgency=medium
 
   * Upgrade to 1.5.4
