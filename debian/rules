@@ -17,6 +17,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+PKG = $(word 2,$(shell dpkg-parsechangelog | grep Source))
+VERSION ?= $(shell cat VERSION)
+URL_DOWNLOAD = "https://github.com/cisco/libsrtp/archive/v${VERSION}.tar.gz"
+
 include /usr/share/cdbs/1/class/autotools.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/rules/utils.mk
@@ -83,10 +87,6 @@ clean::
 	rm -f doc/*.pdf
 	rm -f debian/stamp-make-docs
 
-# Ensure test script is executable
-post-patches::
-	chmod +x test/rtpw_test.sh
-
 # Let d-shlibs calculate development package dependencies
 #  and handle shared library install
 CDBS_BUILD_DEPENDS +=, d-shlibs
@@ -94,3 +94,9 @@ binary-post-install/libsrtp0::
 	d-shlibmove --commit \
 		--movedev "debian/tmp/usr/include/srtp/*" usr/include/srtp/ \
 		debian/tmp/usr/lib/libsrtp.so
+
+.PHONY: get-orig-source
+
+get-orig-source:
+	@echo "# Downloading..."
+	wget -nv -T10 -t3 $(URL_DOWNLOAD) -O ../$(PKG)_$(VERSION).orig.tar.gz
