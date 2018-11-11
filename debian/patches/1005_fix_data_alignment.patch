@@ -5,9 +5,11 @@ Bug: http://sourceforge.net/tracker/index.php?func=detail&aid=1912057&group_id=3
 Bug-Debian: http://bugs.debian.org/470505
 Last-Update: 2011-05-30
 
---- a/test/srtp_driver.c
-+++ b/test/srtp_driver.c
-@@ -1195,7 +1195,6 @@
+Index: libsrtp-1.5.4/test/srtp_driver.c
+===================================================================
+--- libsrtp-1.5.4.orig/test/srtp_driver.c
++++ libsrtp-1.5.4/test/srtp_driver.c
+@@ -1198,7 +1198,6 @@ mips_estimate(int num_trials, int *ignor
   * These packets were made with the default SRTP policy.
   */
  
@@ -15,7 +17,7 @@ Last-Update: 2011-05-30
  err_status_t
  srtp_validate() {
    uint8_t srtp_plaintext_ref[28] = {
-@@ -1204,14 +1203,14 @@
+@@ -1207,14 +1206,14 @@ srtp_validate() {
      0xab, 0xab, 0xab, 0xab, 0xab, 0xab, 0xab, 0xab, 
      0xab, 0xab, 0xab, 0xab
    };

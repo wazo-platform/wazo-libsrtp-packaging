@@ -3,18 +3,20 @@ Author: loki_val and solar
 Origin: http://sources.gentoo.org/viewcvs.py/gentoo-x86/net-libs/libsrtp/files/libsrtp-1.4.4-shared.patch
 Last-Update: 2010-03-19
 
---- a/Makefile.in
-+++ b/Makefile.in
-@@ -15,7 +15,7 @@
+Index: libsrtp-1.5.4/Makefile.in
+===================================================================
+--- libsrtp-1.5.4.orig/Makefile.in
++++ libsrtp-1.5.4/Makefile.in
+@@ -20,7 +20,7 @@ HAVE_PKG_CONFIG = @HAVE_PKG_CONFIG@
  
- .PHONY: all test build_table_apps
+ .PHONY: all shared_library test build_table_apps
  
 -all: test 
 +all: libsrtp.so test
  
  runtest: build_table_apps test
  	@echo "running libsrtp test applications..."
-@@ -69,7 +69,7 @@
+@@ -107,7 +107,7 @@ endif
  # implicit rules for object files and test apps
  
  %.o: %.c
@@ -23,9 +25,9 @@ Last-Update: 2010-03-19
  
  %$(EXE): %.c
  	$(COMPILE) $(LDFLAGS) $< -o $@ $(SRTPLIB) $(LIBS)
-@@ -107,6 +107,9 @@
- 	ar cr libsrtp.a $^
- 	$(RANLIB) libsrtp.a
+@@ -153,6 +153,9 @@ libsrtp.$(SHAREDLIBSUFFIX): $(srtpobj) $
+ 
+ shared_library: libsrtp.$(SHAREDLIBSUFFIX)
  
 +libsrtp.so: $(srtpobj) $(cryptobj) $(gdoi)
 +	$(CC) $(LDFLAGS) -shared -Wl,-soname,libsrtp.so.0 -o libsrtp.so.0.0  $^
@@ -33,7 +35,7 @@ Last-Update: 2010-03-19
  # libcryptomath.a contains general-purpose routines that are used to
  # generate tables and verify cryptoalgorithm implementations - this
  # library is not meant to be included in production code
-@@ -200,6 +203,11 @@
+@@ -269,6 +272,11 @@ install:
  	cp $(srcdir)/crypto/include/*.h $(DESTDIR)$(includedir)/srtp
  	if [ "$(srcdir)" != "." ]; then cp crypto/include/*.h $(DESTDIR)$(includedir)/srtp; fi
  	if [ -f libsrtp.a ]; then cp libsrtp.a $(DESTDIR)$(libdir)/; fi
@@ -42,15 +44,15 @@ Last-Update: 2010-03-19
 +		ln -s libsrtp.so.0.0 $(DESTDIR)$(libdir)/libsrtp.so.0; \
 +		ln -s libsrtp.so.0.0 $(DESTDIR)$(libdir)/libsrtp.so; \
 +	fi
- 
- uninstall:
- 	rm -f $(DESTDIR)$(includedir)/srtp/*.h
-@@ -208,7 +216,7 @@
+ 	if [ -f libsrtp.dll.a ]; then cp libsrtp.dll.a $(DESTDIR)$(libdir)/; fi
+ 	if [ -f libsrtp.$(SHAREDLIBSUFFIX) ]; then \
+ 		$(INSTALL) -d $(DESTDIR)$(SHAREDLIB_DIR); \
+@@ -290,7 +298,7 @@ uninstall:
  
  clean:
  	rm -rf $(cryptobj) $(srtpobj) $(cryptomath) TAGS \
--        libcryptomath.a libsrtp.a core *.core test/core
-+        libcryptomath.a libsrtp.a libsrtp.so.0.0 core *.core test/core
+-        libcryptomath.a libsrtp.a libsrtp.so libsrtp.dll.a core *.core test/core
++        libcryptomath.a libsrtp.a libsrtp.so libsrtp.so.0.0 libsrtp.dll.a core *.core test/core
  	for a in * */* */*/*; do			\
                if [ -f "$$a~" ] ; then rm -f $$a~; fi;	\
          done;

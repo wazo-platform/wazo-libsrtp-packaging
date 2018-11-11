@@ -4,13 +4,15 @@ Origin: http://bugs.debian.org/628583#89
 Bug-Debian: http://bugs.debian.org/628583
 Last-Update: 2013-07-22
 
---- a/crypto/test/stat_driver.c
-+++ b/crypto/test/stat_driver.c
-@@ -51,6 +51,7 @@
- 
-   printf("statistical tests driver\n");
+Index: libsrtp-1.5.4/crypto/test/stat_driver.c
+===================================================================
+--- libsrtp-1.5.4.orig/crypto/test/stat_driver.c
++++ libsrtp-1.5.4/crypto/test/stat_driver.c
+@@ -105,6 +105,7 @@ main (int argc, char *argv[]) {
+   printf("poker   %d\n", stat_test_poker(buffer));
+   printf("runs    %d\n", stat_test_runs(buffer));
  
 +  v128_set_to_zero(&nonce);
    for (i=0; i < 2500; i++)
-     buffer[i] = 0;
- 
+     buffer[i] = rand();
+   printf("running stat_tests on rand(), expecting success\n");
