@@ -1,3 +1,9 @@
+wazo-libsrtp-packaging (1.5.4-1~wazo4) wazo-dev-stretch; urgency=medium
+
+  * renamae source package
+
+ -- Wazo Maintainers <dev+pkg@wazo.community>  Fri, 16 Nov 2018 10:47:31 -0500
+
 srtp (1.5.4-1~wazo3) wazo-dev-stretch; urgency=medium
 
   * Force rebuild

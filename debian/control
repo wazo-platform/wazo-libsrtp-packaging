@@ -1,4 +1,4 @@
-Source: srtp
+Source: wazo-libsrtp-packaging
 Priority: optional
 Maintainer: Jonas Smedegaard <dr@jones.dk>
 Build-Depends: cdbs,
