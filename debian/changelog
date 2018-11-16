@@ -1,3 +1,9 @@
+wazo-libsrtp-packaging (1.5.4-1~wazo5) wazo-dev-stretch; urgency=medium
+
+  * fix source package in control.in
+
+ -- Wazo Maintainers <dev+pkg@wazo.community>  Fri, 16 Nov 2018 10:51:01 -0500
+
 wazo-libsrtp-packaging (1.5.4-1~wazo4) wazo-dev-stretch; urgency=medium
 
   * renamae source package
